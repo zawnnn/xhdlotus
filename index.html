@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin xuất hoá đơn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Thông tin xuất hoá đơn</h1>
+        
+        <!-- Thêm hình ảnh vào đây -->
+        <div class="image-container">
+            <img src="image.png" alt="Hình ảnh nhà hàng" class="restaurant-image">
+        </div>
+        
+        <div class="form-group">
+            <!--<label for="brand">Nhãn hàng:</label>-->
+            <select id="brandList" onchange="updateRestaurants()">
+                <option value="">Chọn Nhãn hàng</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <!--<label for="restaurant">Nhà hàng:</label>-->
+            <select id="restaurantList" onchange="showInfo()">
+                <option value="">Chọn Nhà hàng</option>
+            </select>
+        </div>
+        <div class="info">
+            <p id="taxNumber"></p>
+            <p id="name"></p>
+            <p id="address"></p>
+        </div>
+    </div>
+    <button id="copyButton">Sao chép thông tin</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
