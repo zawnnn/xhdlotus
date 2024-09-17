@@ -51,6 +51,7 @@ function showInfo() {
     const info = data.find(item => item['res'] === selectedRestaurant);
     
     if (info) {
+        document.getElementById('nhname').textContent = `Tên người mua hàng: ${info['nh']}`;
         document.getElementById('taxNumber').textContent = `Mã số thuế: ${info['tax']}`;
         document.getElementById('name').textContent = `Tên đơn vị: ${info['nameres']}`;
         document.getElementById('address').textContent = `Địa chỉ: ${info['addressres']}`;
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const copyButton = document.getElementById('copyButton');
     copyButton.addEventListener('click', function() {
         // Lấy các phần tử thông tin
+        const nhname = document.getElementById('nhname').textContent;
         const taxNumber = document.getElementById('taxNumber').textContent;
         const name = document.getElementById('name').textContent;
         const address = document.getElementById('address').textContent;
@@ -78,4 +80,3 @@ document.addEventListener('DOMContentLoaded', function() {
         //alert('Thông tin đã được sao chép vào clipboard!');
     });
 });
-
