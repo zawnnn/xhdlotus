@@ -55,6 +55,7 @@ function showInfo() {
         document.getElementById('taxNumber').textContent = `Mã số thuế: ${info['tax']}`;
         document.getElementById('name').textContent = `Tên đơn vị: ${info['nameres']}`;
         document.getElementById('address').textContent = `Địa chỉ: ${info['addressres']}`;
+        document.getElementById('note').innerHTML = `<span style="color: red;">Notes:</span> ${info['notes']}`;
     }
 }
 
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const taxNumber = document.getElementById('taxNumber').textContent;
         const name = document.getElementById('name').textContent;
         const address = document.getElementById('address').textContent;
+        const note = document.getElementById('note').textContent;
 
         // Tạo một vùng tạm thời để sao chép
         const tempTextArea = document.createElement('textarea');
