@@ -1,76 +1,82 @@
 /* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #FFC0CB; /* Màu nền hồng */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFC0CB; /* Màu nền hồng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 400px;
-    text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 400px;
+  text-align: center;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
 }
 
 .info {
-    display: grid;
-    gap: 5px;
-    text-align: left;
+  display: grid;
+  gap: 5px;
+  text-align: left;
 }
 
 .info p {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
-button {
-    margin-top: 800px;
-    margin-left: 50px;
-    padding: 13px 15px;
-    font-size: 16px;
-    color: white;
-    background-color: #FFC0CB;
-    border: 2px dashed #ffffff;
-    border-radius: 10px;
-    cursor: pointer;
+#copyButton {
+  margin-left: 93%;
+  padding-top: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  right: 5px;
+  bottom: 5px;
+}
+#copyButton:hover i {
+  transform: scale(1.25); /* Phóng to biểu tượng */
 }
 
-button:hover {
-    background-color: #ffffff;
-    color: #FFC0CB;
+#copy-success {
+  display: none;
+  color: green;
+  margin-left: 10px;
 }
 
 /* Thêm định dạng cho hình ảnh */
 .image-container {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .restaurant-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+  width: 50%;
+  height: auto;
+  border-radius: 8px;
 }
