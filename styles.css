@@ -76,7 +76,7 @@ select {
 }
 
 .restaurant-image {
-  width: 50%;
+  width: 100%;
   height: auto;
   border-radius: 8px;
 }
