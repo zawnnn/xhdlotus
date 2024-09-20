@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Tạo một vùng tạm thời để sao chép
         const tempTextArea = document.createElement('textarea');
-        tempTextArea.value = `${taxNumber}\n${name}\n${address}\n${nhname}\n${note}`;
+        tempTextArea.value = `Mã số thuế: ${taxNumber}\nTên đơn vị: ${name}\n Địa chỉ: ${address}\nTên người mua hàng: ${nhname}\nGhi chú: ${note}`;
         document.body.appendChild(tempTextArea);
         tempTextArea.select();
         document.execCommand('copy');
