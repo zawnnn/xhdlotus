@@ -198,3 +198,38 @@ document.addEventListener('DOMContentLoaded', function() {
         //alert('Thông tin đã được sao chép vào clipboard!');
     });
 });
+
+
+function createSakura() {
+    const sakura = document.createElement('div');
+    sakura.classList.add('sakura');
+    sakura.style.left = Math.random() * 100 + 'vw'; // Vị trí ngẫu nhiên ngang
+    sakura.style.animationDuration = Math.random() * 2 + 5 + 's'; // Thời gian rơi
+    sakura.style.opacity = Math.random();
+    sakura.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.getElementById('sakura-container').appendChild(sakura);
+
+    // Sau một khoảng thời gian thì loại bỏ hoa rơi
+    setTimeout(() => {
+        sakura.remove();
+    }, 10000); // Thời gian tồn tại của hoa
+}
+
+function startSakuraRain() {
+    // Tạo hoa mỗi 300ms
+    const sakuraInterval = setInterval(createSakura, 100);
+
+    // Dừng tạo hoa sau 3-4 giây
+    setTimeout(() => {
+        clearInterval(sakuraInterval);
+    }, 3000); // Dừng tạo hoa sau 3.5 giây
+}
+
+// Gắn sự kiện click cho nút
+document.getElementById('nhname').addEventListener('click', startSakuraRain);
+document.getElementById('taxNumber').addEventListener('click', startSakuraRain);
+document.getElementById('name').addEventListener('click', startSakuraRain);
+document.getElementById('address').addEventListener('click', startSakuraRain);
+
+// Tạo hoa rơi sau mỗi khoảng thời gian ngẫu nhiên
+//setInterval(createSakura, 300);
