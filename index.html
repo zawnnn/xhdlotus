@@ -6,23 +6,6 @@
     <title>Thông tin xuất hoá đơn</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PM52QSGW');</script>
-    <!-- End Google Tag Manager -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PM52QSGW"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GTM-PM52QSGW');
-    </script>
-    
 </head>
 <body>
     <div class="container">
@@ -46,6 +29,8 @@
             </select>
         </div>
         <div class="info">
+            <p><b><span style="color: red;"><b>Ghi chú: </b></span></b></p>
+            <p id="note"></p>
             <p><b>Mã số thuế:</b></p>
             <p id="taxNumber" style="cursor: pointer"></p>
             <p><b>Tên đơn vị:</b></p>
@@ -54,8 +39,7 @@
             <p id="address" style="cursor: pointer"></p>
             <p><b>Tên người mua hàng:</b></p>
             <p id="nhname" style="cursor: pointer"></p>
-            <p><b><span style="color: red;"><b>Ghi chú: </b></span></b></p>
-            <p id="note"></p>
+            
         </div>
         <!-- Nút sao chép với icon -->
         <button id="copyButton">
@@ -64,16 +48,12 @@
 
         <!-- Thông báo khi sao chép thành công -->
         <span id="copy-success">Copied!</span>
+        <!--<div class="flower"></div>-->
     </div>
+    <div id="sakura-container"></div>
     
     <!--<button id="copyButton">Sao chép thông tin</button>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="script.js"></script>
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PM52QSGW"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
 </body>
 </html>
