@@ -1,59 +1,351 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin xuất hoá đơn</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Thông tin xuất hoá đơn - Chúc Mừng Năm Mới</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgba(164,41,44,255);
+            /* background: linear-gradient(135deg, #d42828, #FFE4E1); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .parent-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0%; /* Adjusted from top: 0 to position it higher */
+            width: auto; /* Change from max-width to allow scaling */
+            max-height: 40%; /* Limit height to prevent overflow */
+            object-fit: contain; /* Maintain aspect ratio */
+            z-index: 2;
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Ensure perfect centering */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            width: 400px;
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            margin-top: 60%;
+        }
+
+        /* .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            width: 400px;
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        } */
+
+        h1 {
+            color: #CC0000;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* Form Elements */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #CC0000;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #FF0000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+
+        /* Info Section */
+        .info {
+            text-align: left;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info p {
+            margin: 8px 0;
+            padding: 5px;
+            border-bottom: 1px solid #FFE4E1;
+            transition: all 0.3s ease;
+        }
+
+        .info p:hover {
+            background-color: #FFF8DC;
+        }
+
+        /* Mai Flower (Yellow) */
+        .mai-flower {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+        }
+
+        .mai-flower::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("mai.png");
+            background-size: contain;
+            animation: spin 20s linear infinite;
+        }
+
+        /* Mai Flower (Yellow) */
+        .mai1-flower {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            width: 30px;
+            height: 30px;
+        }
+
+        .mai1-flower::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("mai1.png");
+            background-size: contain;
+            animation: spin 20s linear infinite;
+        }
+
+        /* Dao Flower (Pink) */
+        .dao-flower {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+        }
+
+        .dao-flower::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("dao.png");
+            background-size: contain;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20vw) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Lanterns */
+        .lantern {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: #FF0000;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        .lantern::after {
+            content: '福';
+            color: #FFD700;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .lantern-left {
+            top: -30px;
+            left: -50px;
+        }
+
+        .lantern-right {
+            top: -30px;
+            right: -50px;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Copy Button */
+        #copyButton {
+            background: linear-gradient(145deg, #CC0000, #FF0000);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #copyButton:hover {
+            transform: scale(1.1);
+        }
+
+        #copy-success {
+            position: fixed;
+            bottom: 20px;
+            right: 70px;
+            background-color: rgba(0, 128, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Thông tin xuất hoá đơn</h1>
-        
-        <!-- Thêm hình ảnh vào đây -->
-        <div class="image-container">
-            <img src="image.png" alt="Hình ảnh nhà hàng" class="restaurant-image">
-        </div>
-        
-        <div class="form-group">
-            <!--<label for="brand">Nhãn hàng:</label>-->
+    
+    <div class="parent">
+        <img src="kilan.png" alt="Banner" class="banner" style="max-width: 50%;">
+        <div class="container">
+            <div class="lantern lantern-left"></div>
+            <div class="lantern lantern-right"></div>
+            
+            <h1>Thông tin xuất hoá đơn</h1>
+            
             <select id="brandList" onchange="updateRestaurants()">
                 <option value="">Chọn Nhãn hàng</option>
             </select>
-        </div>
-        <div class="form-group">
-            <!--<label for="restaurant">Nhà hàng:</label>-->
+            
             <select id="restaurantList" onchange="showInfo()">
                 <option value="">Chọn Nhà hàng</option>
             </select>
-        </div>
-        <div class="info">
-            <p><b><span style="color: red;"><b>Ghi chú: </b></span></b></p>
-            <p id="note"></p>
-            <p><b>Mã số thuế:</b></p>
-            <p id="taxNumber" style="cursor: pointer"></p>
-            <p><b>Tên đơn vị:</b></p>
-            <p id="name" style="cursor: pointer"></p>
-            <p><b>Địa chỉ:</b></p>
-            <p id="address" style="cursor: pointer"></p>
-            <p><b>Tên người mua hàng:</b></p>
-            <p id="nhname" style="cursor: pointer"></p>
-            
-        </div>
-        <!-- Nút sao chép với icon -->
-        <button id="copyButton">
-            <i class="fa-regular fa-copy" style="color: #f33fdb;"></i>
-        </button>
 
-        <!-- Thông báo khi sao chép thành công -->
-        <span id="copy-success">Copied!</span>
-        <!--<div class="flower"></div>-->
+            <div class="info">
+                <p><b><span style="color: #CC0000;">Ghi chú: </span></b></p>
+                <p id="note"></p>
+                <p><b>Mã số thuế:</b></p>
+                <p id="taxNumber" style="cursor: pointer"></p>
+                <p><b>Tên đơn vị:</b></p>
+                <p id="name" style="cursor: pointer"></p>
+                <p><b>Địa chỉ:</b></p>
+                <p id="address" style="cursor: pointer"></p>
+                <p><b>Tên người mua hàng:</b></p>
+                <p id="nhname" style="cursor: pointer"></p>
+            </div>
+
+            <button id="copyButton">
+                <i class="fa-regular fa-copy" style="color: #fff;"></i>
+            </button>
+            <span id="copy-success">Đã sao chép!</span>
+        </div>
     </div>
-    <div id="sakura-container"></div>
-    
-    <!--<button id="copyButton">Sao chép thông tin</button>-->
+
+    <script>
+        // Create flower effects
+        function createFlower(type) {
+            const flower = document.createElement('div');
+            flower.className = type === 'mai' ? 'mai-flower' : 
+                   type === 'mai1' ? 'mai1-flower' : 
+                   'dao-flower';
+            
+            // Random starting position
+            flower.style.top = '-50px';
+            flower.style.left = Math.random() * 100 + 'vw';
+            
+            // Random animation duration
+            const duration = Math.random() * 4 + 3;
+            flower.style.animation = `falling ${duration}s linear forwards`;
+            
+            document.body.appendChild(flower);
+
+            // Remove flower after animation
+            setTimeout(() => {
+                flower.remove();
+            }, duration * 1000);
+        }
+
+        // Create both types of flowers periodically
+        setInterval(() => {
+            const random = Math.random();
+            if (random > 0.7) {
+                createFlower('mai');
+            } else if (random > 0.4) {
+                createFlower('dao');
+            } else {
+                createFlower('mai1');
+            }
+        }, 300);
+
+        // Keep your existing JavaScript code here
+        // (Paste your original script.js content here)
+        
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let titleText = "Thông tin xuất hoá đơn - Chúc mừng năm mới!";
+      let currentIndex = 0;
+
+      function scrollTitle() {
+        if (currentIndex < titleText.length) {
+          document.title = titleText.substring(currentIndex) + " " + titleText.substring(0, currentIndex);
+          currentIndex++;
+        } else {
+          clearInterval(scrollInterval); // Dừng hiệu ứng khi hết chuỗi
+        }
+      }
+
+      // Tạo hiệu ứng với tốc độ mượt
+      let scrollInterval = setInterval(scrollTitle, 200); // 200ms mỗi bước
+    });
+  </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
