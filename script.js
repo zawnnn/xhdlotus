@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function populateBrands() {
     const brandList = document.getElementById('brandList');
-    brandList.innerHTML = '<option value="">Chọn Nhãn hàng</option>';
+    brandList.innerHTML = '<option value=""></option>';
     
     const brands = [...new Set(data.map(item => item['brand']))];
     brands.forEach(brand => {
@@ -35,7 +35,7 @@ function populateBrands() {
 function updateRestaurants() {
     const selectedBrand = document.getElementById('brandList').value;
     const restaurantList = document.getElementById('restaurantList');
-    restaurantList.innerHTML = '<option value="">Chọn Nhà hàng</option>';
+    restaurantList.innerHTML = '<option value=""></option>';
 
     const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['res']);
     restaurants.forEach(restaurant => {
