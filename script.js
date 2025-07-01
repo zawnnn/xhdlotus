@@ -35,7 +35,7 @@ function populateBrands() {
 function updateRestaurants() {
     const selectedBrand = document.getElementById('brandList').value;
     const restaurantList = document.getElementById('restaurantList');
-    //restaurantList.innerHTML = '<option value=""></option>';
+    restaurantList.innerHTML = '<option value=""></option>';
 
     const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['res']);
     restaurants.forEach(restaurant => {
