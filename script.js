@@ -35,7 +35,7 @@ function populateBrands() {
 function updateRestaurants() {
     const selectedBrand = document.getElementById('brandList').value;
     const restaurantList = document.getElementById('restaurantList');
-    restaurantList.innerHTML = '<option value=""></option>';
+    // restaurantList.innerHTML = '<option value=""></option>';
 
     const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['res']);
     restaurants.forEach(restaurant => {
@@ -44,6 +44,15 @@ function updateRestaurants() {
         option.textContent = restaurant;
         restaurantList.appendChild(option);
     });
+    clearInfo();
+}
+
+function clearInfo() {
+    document.getElementById('nhname').textContent = '';
+    document.getElementById('taxNumber').textContent = '';
+    document.getElementById('name').textContent = '';
+    document.getElementById('address').textContent = '';
+    document.getElementById('note').textContent = '';
 }
 
 function showInfo() {
