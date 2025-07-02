@@ -1,138 +1,429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin xuất hoá đơn</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .created-by {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffc93c);
-            background-size: 300% 300%;
-            animation: gradientShift 3s ease infinite;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VIOTUS Invoice Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; padding: 0;
+      background: #fff6f6;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Sửa lại để canh giữa dọc */
+      min-height: 100vh;
+      padding: 20px 10px 40px;
+    }
+
+    /* Container for the form */
+    .container {
+      position: relative;
+      max-width: 600px;   /* Tăng chiều rộng tối đa */
+      width: 100%;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(237, 173, 188, 0.35);
+      padding: 80px 30px 50px;
+      overflow: visible;
+    }
     
-        .created-by:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            animation-duration: 1s;
-        }
-    
-        .created-by i {
-            margin-right: 8px;
-            animation: bounce 2s infinite;
-        }
-    
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-    
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-5px);
-            }
-            60% {
-                transform: translateY(-3px);
-            }
-        }
-    
-        .created-by::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffc93c);
-            border-radius: 25px;
-            z-index: -1;
-            filter: blur(5px);
-            opacity: 0.7;
-            animation: gradientShift 3s ease infinite;
-        }
-    </style>
+    /* Top character image */
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .character {
+      position: static;
+      width: 400px;   /* Tăng kích thước */
+      height: 400px;  /* Tăng kích thước */
+      margin-right: 16px;
+      top: unset;
+      left: unset;
+    }
+    /* animate character float */
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) }
+      50% { transform: translateY(-10px) }
+    }
+    .character img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: floaty 4s ease-in-out infinite;
+    }
+
+    /* VIOTUS hand-writing style title */
+    .title {
+      font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
+      font-size: 3.2rem;
+      text-align: center;
+      color: #39121f;
+      letter-spacing: -1px;
+      margin: 10px 0 40px;
+      user-select: none;
+    }
+
+    /* Form group container */
+    .form-group {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+    }
+    /* Tag number boxes like 01 02 etc */
+    .tag-number {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.1rem;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    /* Different background colors for tags */
+    .tag-brand {
+      background: #f5a9b8;
+      margin-right: 8px;
+      font-style: normal;
+    }
+    .tag-01 {
+      background: #efaa88;
+      margin-right: 12px;
+      position: relative;
+    }
+    .tag-02 {
+      background: #86c6cd;
+      margin-right: 12px;
+    }
+    .tag-03 {
+      background: #c1a1b8;
+      margin-right: 12px;
+    }
+    .tag-04 {
+      background: #f6b2a9;
+      margin-right: 12px;
+    }
+    .tag-05 {
+      background: #86b5b9;
+      margin-right: 12px;
+    }
+    .tag-06 {
+      background: #cc91a8;
+      margin-right: 12px;
+    }
+
+    /* Input container with icon and input */
+    .input-with-icon {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 1px 12px rgb(237 173 188 / 0.25);
+      padding: 6px 14px 6px 6px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s ease;
+      cursor: text;
+    }
+    .input-with-icon:hover {
+      border-color: #e194a4;
+    }
+    input[type="text"],
+    select {
+      flex-grow: 1;
+      font-size: 1.0rem;
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      padding: 10px 16px;
+      background: transparent;
+      user-select: text;
+      color: #333;
+      font-weight: 600;
+      font-family: inherit;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    select::-ms-expand {
+      display: none;
+    }
+    .input-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      flex-shrink: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+    .input-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 1px rgb(237 173 188 / 0.65));
+    }
+
+    /* Underline swirl decorative line under 2nd field */
+    .decorative-line {
+      margin: -10px 0 22px;
+      height: 20px;
+      width: 90%;
+      border-bottom: 2px solid #d9aeb2;
+      border-radius: 50%/100%;
+      position: relative;
+      left: 40px;
+      user-select: none;
+    }
+    .decorative-line::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 4px;
+      height: 12px;
+      background: #d9aeb2;
+      border-radius: 2px;
+      transform: translateX(-50%) rotate(15deg);
+    }
+
+    /* Copy icon on bottom right corner */
+    .copy-icon {
+      position: absolute;
+      bottom: 15px;
+      right: 14px;
+      width: 48px;      /* Tăng kích thước nút */
+      height: 48px;     /* Tăng kích thước nút */
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease;
+      filter: drop-shadow(0 1px 1px rgb(237 173 188 / 0.6));
+      background: none;
+      border: none;
+    }
+    .copy-icon:hover {
+      transform: scale(1.1);
+    }
+    .copy-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Label text inside input placeholder style */
+    input::placeholder,
+    select option[disabled] {
+      color: #bbb3b5;
+      font-weight: 600;
+    }
+
+    /* Copy success notification */
+    #copy-success {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Sakura falling effect */
+    #sakura-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .sakura {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ffb3ba;
+      border-radius: 50% 0;
+      transform: rotate(-45deg);
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    .sakura::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #ffb3ba;
+      border-radius: 50% 0;
+      transform: rotate(45deg);
+      top: -7px;
+      left: 7px;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100vh) rotate(-45deg);
+      }
+      to {
+        transform: translateY(100vh) rotate(-45deg);
+      }
+    }
+
+    /* Clickable info fields */
+    .clickable-info {
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+      margin: 5px 0;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .clickable-info:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Responsive tweaks */
+    @media screen and (max-width: 450px) {
+      .container {
+        padding: 40px 20px 60px;
+      }
+      .character {
+        display: none;
+      }
+      .title {
+        font-size: 2.8rem;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Thông tin xuất hoá đơn</h1>
-        
-        <!-- Thêm hình ảnh vào đây -->
-        <div class="image-container">
-            <img src="image.png" alt="Hình ảnh nhà hàng" class="restaurant-image">
-        </div>
-        
-        <div class="form-group">
-            <!--<label for="brand">Nhãn hàng:</label>-->
-            <select id="brandList" onchange="updateRestaurants()">
-                <option value="">--- Chọn nhãn hàng ---</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <!--<label for="restaurant">Nhà hàng:</label>-->
-            <select id="restaurantList" onchange="showInfo()">
-                <option value="">--- Chọn nhà hàng ---</option>
-            </select>
-        </div>
-        <div class="info">
-            <p><b><span style="color: red;"><b>Ghi chú: </b></span></b></p>
-            <p id="note"></p>
-            <p><b>Mã số thuế:</b></p>
-            <p id="taxNumber" style="cursor: pointer"></p>
-            <p><b>Tên đơn vị:</b></p>
-            <p id="name" style="cursor: pointer"></p>
-            <p><b>Địa chỉ:</b></p>
-            <p id="address" style="cursor: pointer"></p>
-            <p><b>Tên người mua hàng:</b></p>
-            <p id="nhname" style="cursor: pointer"></p>
-            
-        </div>
-        <!-- Nút sao chép với icon -->
-        <button id="copyButton">
-            <i class="fa-regular fa-copy" style="color: #f33fdb;"></i>
-        </button>
+  <main class="container" role="main" aria-label="Form xuất hoá đơn VIOTUS">
 
-        <!-- Thông báo khi sao chép thành công -->
-        <span id="copy-success">Copied!</span>
-        <!--<div class="flower"></div>-->
+    <div class="header-flex">
+      <div class="character" aria-hidden="true" title="Xin chào, tôi là Lotuschan">
+        <img src="lotuschan.png" alt="Hình hoạt hình nhân vật VIOTUS mặc đồ màu hồng cười vui vẻ, phong cách dễ thương" onerror="this.style.display='none'" />
+      </div>
+      <h1 class="title" aria-label="Tiêu đề VIOTUS">Thông tin xuất hoá đơn</h1>
     </div>
-    <div id="sakura-container"></div>
-    
-    <!--<button id="copyButton">Sao chép thông tin</button>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    <script src="script.js"></script>
-    <!-- Created by section with lively style -->
-<!--     <div class="created-by" onclick="window.open('https://github.com/yourusername', '_blank')">
-        <i class="fas fa-heart"></i>
-        Created by Phuong Luu 😘
-    </div> -->
-<!--     <div class="created-by">
-        <i class="fas fa-heart"></i>
-        Created by Phuong Luu 😘
-    </div> -->
+
+    <!-- Chọn nhãn hàng -->
+    <div class="form-group" aria-label="Chọn nhãn hàng">
+      <div class="tag-number tag-01" aria-hidden="true" title="Số 1">01</div>
+      <div class="input-with-icon">
+        <select id="brandList" onchange="updateRestaurants()" aria-required="true" aria-describedby="desc-brand" aria-label="Chọn nhãn hàng">
+          <option disabled selected>--- Chọn nhãn hàng ---</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Nhà hàng -->
+    <div class="form-group" aria-label="Chọn nhà hàng">
+      <div class="tag-number tag-02" aria-hidden="true" title="Số 2">02</div>
+      <div class="input-with-icon">
+        <select id="restaurantList" onchange="showInfo()" aria-required="true" aria-label="Chọn nhà hàng">
+          <option disabled selected>--- Chọn nhà hàng ---</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="decorative-line" aria-hidden="true"></div>
+
+    <!-- Ghi chú -->
+    <div class="form-group" aria-label="Ghi chú">
+      <div class="tag-number tag-03" aria-hidden="true" title="Ghi chú icon hình trái tim màu hồng tím pastel">
+        ❤️
+      </div>
+      <div class="input-with-icon" style="padding-left:14px;">
+        <div id="note" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
+      </div>
+    </div>
+
+    <!-- Mã số thuế -->
+    <div class="form-group" aria-label="Mã số thuế">
+      <div class="tag-number tag-04" aria-hidden="true" title="Mã số thuế icon hình ổ khóa vàng pastel">
+        🔒
+      </div>
+      <div class="input-with-icon" style="padding-left:14px;">
+        <div id="taxNumber" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
+      </div>
+    </div>
+
+    <!-- Tên đơn vị -->
+    <div class="form-group" aria-label="Tên đơn vị">
+      <div class="tag-number tag-05" aria-hidden="true" title="Tên đơn vị icon hình tòa nhà màu hồng pastel">
+        🏢
+      </div>
+      <div class="input-with-icon" style="padding-left:14px;">
+        <div id="name" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
+      </div>
+    </div>
+
+    <!-- Địa chỉ -->
+    <div class="form-group" aria-label="Địa chỉ">
+      <div class="tag-number tag-06" aria-hidden="true" title="Địa chỉ icon hình bản đồ chỉ đường màu hồng pastel">
+        📍
+      </div>
+      <div class="input-with-icon" style="padding-left:14px;">
+        <div id="address" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
+      </div>
+    </div>
+
+    <!-- Tên người mua hàng -->
+    <div class="form-group" aria-label="Tên người mua hàng">
+      <div class="tag-number tag-02" aria-hidden="true" title="Tên người mua hàng icon màu xanh pastel tròn">
+        🧍
+      </div>
+      <div class="input-with-icon" style="padding-left:14px;">
+        <div id="nhname" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
+      </div>
+    </div>
+
+    <!-- Copy icon bottom right -->
+    <!-- <button type="button" id="copyButton" class="copy-icon" aria-label="Sao chép thông tin">
+        <i class="fa-regular fa-copy" style="color: #f33fdb; font-size: 24px;"></i>
+    </button> -->
+
+    <button type="button" class="copy-icon" id="copyButton" aria-label="Sao chép thông tin">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827933.png" style="color: #f33fdb; font-size: 30px;" alt="Icon sao chép" />
+    </button>
+
+  </main>
+
+  <!-- Sakura container -->
+  <div id="sakura-container"></div>
+
+  <!-- Copy success notification -->
+  <span id="copy-success">Copied!</span>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
