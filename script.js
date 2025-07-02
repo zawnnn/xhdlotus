@@ -44,16 +44,16 @@ function updateRestaurants() {
         option.textContent = restaurant;
         restaurantList.appendChild(option);
     });
-    clearInfo();
+    // clearInfo();
 }
 
-function clearInfo() {
-    document.getElementById('nhname').textContent = '';
-    document.getElementById('taxNumber').textContent = '';
-    document.getElementById('name').textContent = '';
-    document.getElementById('address').textContent = '';
-    document.getElementById('note').textContent = '';
-}
+// function clearInfo() {
+//     document.getElementById('nhname').textContent = '';
+//     document.getElementById('taxNumber').textContent = '';
+//     document.getElementById('name').textContent = '';
+//     document.getElementById('address').textContent = '';
+//     document.getElementById('note').textContent = '';
+// }
 
 function showInfo() {
     const selectedRestaurant = document.getElementById('restaurantList').value;
