@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VLOTUS - Thông tin xuất hoát đơn</title>
+  <title>Thông tin xuất hoá đơn</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -28,7 +28,7 @@
     /* Container for the form */
     .container {
       position: relative;
-      max-width: 600px;   /* Tăng chiều rộng tối đa */
+      max-width: 700px;   /* Tăng chiều rộng tối đa */
       width: 100%;
       background: #fff;
       border-radius: 20px;
@@ -80,7 +80,8 @@
     .form-group {
       margin-bottom: 30px;
       display: flex;
-      align-items: center;
+      align-items: flex-start; /* Đảm bảo các trường thẳng hàng trên cùng */
+      gap: 12px;
     }
     /* Tag number boxes like 01 02 etc */
     .tag-number {
@@ -97,6 +98,7 @@
       user-select: none;
       box-shadow: 0 2px 5px rgba(0,0,0,0.12);
       position: relative;
+      margin-top: 6px; /* Căn giữa với label nếu cần */
     }
     /* Different background colors for tags */
     .tag-brand {
@@ -142,6 +144,7 @@
       border: 1px solid transparent;
       transition: border-color 0.2s ease;
       cursor: text;
+      min-height: 38px; /* Đảm bảo chiều cao đồng nhất */
     }
     .input-with-icon:hover {
       border-color: #e194a4;
@@ -308,6 +311,18 @@
       background-color: #f0f0f0;
     }
 
+    /* Field label style */
+    .field-label {
+      min-width: 130px; /* Tăng nếu label dài */
+      font-size: 1rem;
+      font-weight: 600;
+      color: #b35c7a;
+      margin-bottom: 0;
+      margin-right: 0;
+      white-space: nowrap;
+      line-height: 38px; /* Căn giữa label với icon */
+    }
+
     /* Responsive tweaks */
     @media screen and (max-width: 450px) {
       .container {
@@ -324,13 +339,13 @@
   </style>
 </head>
 <body>
-  <main class="container" role="main" aria-label="Thông tin xuất hoá đơn">
+  <main class="container" role="main" aria-label="Form xuất hoá đơn VIOTUS">
 
     <div class="header-flex">
       <div class="character" aria-hidden="true" title="Xin chào, tôi là Lotuschan">
-        <img src="lotuschan.png" alt="Hình hoạt hình nhân vật VIOTUS mặc đồ màu hồng cười vui vẻ, phong cách dễ thương" onerror="this.style.display='none'" />
+        <img src="Image/lotuschan.png" alt="Hình hoạt hình nhân vật VIOTUS mặc đồ màu hồng cười vui vẻ, phong cách dễ thương" onerror="this.style.display='none'" />
       </div>
-      <h1 class="title" aria-label="">Thông tin xuất hoá đơn</h1>
+      <h1 class="title" aria-label="Tiêu đề VIOTUS">Thông tin xuất hoá đơn</h1>
     </div>
 
     <!-- Chọn nhãn hàng -->
@@ -357,9 +372,8 @@
 
     <!-- Ghi chú -->
     <div class="form-group" aria-label="Ghi chú">
-      <div class="tag-number tag-03" aria-hidden="true" title="Ghi chú icon hình trái tim màu hồng tím pastel">
-        ❤️
-      </div>
+      <div class="tag-number tag-03" aria-hidden="true" title="Ghi chú icon hình trái tim màu hồng tím pastel">❤️</div>
+      <div class="field-label">Ghi chú</div>
       <div class="input-with-icon" style="padding-left:14px;">
         <div id="note" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
       </div>
@@ -367,9 +381,8 @@
 
     <!-- Mã số thuế -->
     <div class="form-group" aria-label="Mã số thuế">
-      <div class="tag-number tag-04" aria-hidden="true" title="Mã số thuế icon hình ổ khóa vàng pastel">
-        🔒
-      </div>
+      <div class="tag-number tag-04" aria-hidden="true" title="Mã số thuế icon hình ổ khóa vàng pastel">🔒</div>
+      <div class="field-label">Mã số thuế</div>
       <div class="input-with-icon" style="padding-left:14px;">
         <div id="taxNumber" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
       </div>
@@ -377,9 +390,8 @@
 
     <!-- Tên đơn vị -->
     <div class="form-group" aria-label="Tên đơn vị">
-      <div class="tag-number tag-05" aria-hidden="true" title="Tên đơn vị icon hình tòa nhà màu hồng pastel">
-        🏢
-      </div>
+      <div class="tag-number tag-05" aria-hidden="true" title="Tên đơn vị icon hình tòa nhà màu hồng pastel">🏢</div>
+      <div class="field-label">Tên đơn vị</div>
       <div class="input-with-icon" style="padding-left:14px;">
         <div id="name" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
       </div>
@@ -387,9 +399,8 @@
 
     <!-- Địa chỉ -->
     <div class="form-group" aria-label="Địa chỉ">
-      <div class="tag-number tag-06" aria-hidden="true" title="Địa chỉ icon hình bản đồ chỉ đường màu hồng pastel">
-        📍
-      </div>
+      <div class="tag-number tag-06" aria-hidden="true" title="Địa chỉ icon hình bản đồ chỉ đường màu hồng pastel">📍</div>
+      <div class="field-label">Địa chỉ</div>
       <div class="input-with-icon" style="padding-left:14px;">
         <div id="address" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
       </div>
@@ -397,9 +408,8 @@
 
     <!-- Tên người mua hàng -->
     <div class="form-group" aria-label="Tên người mua hàng">
-      <div class="tag-number tag-02" aria-hidden="true" title="Tên người mua hàng icon màu xanh pastel tròn">
-        🧍
-      </div>
+      <div class="tag-number tag-02" aria-hidden="true" title="Tên người mua hàng icon màu xanh pastel tròn">🧍</div>
+      <div class="field-label">Người mua hàng</div>
       <div class="input-with-icon" style="padding-left:14px;">
         <div id="nhname" class="clickable-info" style="min-height: 20px; padding: 10px 16px; flex-grow: 1;"></div>
       </div>
