@@ -57,7 +57,7 @@ function updateRestaurants() {
 
 function showInfo() {
     const selectedRestaurant = document.getElementById('restaurantList').value;
-    const info = data.find(item => item['res'] === selectedRestaurant);
+    const info = data.find(item => item['nh'] === selectedRestaurant);
     
     if (info) {
         document.getElementById('nhname').textContent = `${info['nh']}`;
