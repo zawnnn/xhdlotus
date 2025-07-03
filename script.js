@@ -37,7 +37,7 @@ function updateRestaurants() {
     const restaurantList = document.getElementById('restaurantList');
     restaurantList.innerHTML = '<option value=""></option>';
 
-    const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['nh']);
+    const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['res']);
     restaurants.forEach(restaurant => {
         const option = document.createElement('option');
         option.value = restaurant;
@@ -57,7 +57,7 @@ function updateRestaurants() {
 
 function showInfo() {
     const selectedRestaurant = document.getElementById('restaurantList').value;
-    const info = data.find(item => item['nh'] === selectedRestaurant);
+    const info = data.find(item => item['res'] === selectedRestaurant);
     
     if (info) {
         document.getElementById('nhname').textContent = `${info['nh']}`;
