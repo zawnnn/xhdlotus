@@ -37,7 +37,7 @@ function updateRestaurants() {
     const restaurantList = document.getElementById('restaurantList');
     restaurantList.innerHTML = '<option value=""></option>';
 
-    const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['res']);
+    const restaurants = data.filter(item => item['brand'] === selectedBrand).map(item => item['nh']);
     restaurants.forEach(restaurant => {
         const option = document.createElement('option');
         option.value = restaurant;
