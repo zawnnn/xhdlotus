@@ -1,120 +1,372 @@
-/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+/* Reset & base */
+* {
+  box-sizing: border-box;
+}
 body {
-  font-family: Arial, sans-serif;
-  background-color: #FFC0CB; /* Màu nền hồng */
+  margin: 0; padding: 0;
+  background: #fff6f6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Sửa lại để canh giữa dọc */
+  min-height: 100vh;
+  padding: 20px 10px 40px;
+}
+
+/* Container for the form */
+.container {
+  position: relative;
+  max-width: 700px;   /* Tăng chiều rộng tối đa */
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(237, 173, 188, 0.35);
+  padding: 80px 30px 50px;
+  overflow: visible;
+}
+
+/* Top character image */
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.character {
+  position: static;
+  width: 400px;   /* Tăng kích thước */
+  height: 400px;  /* Tăng kích thước */
+  margin-right: 16px;
+  top: unset;
+  left: unset;
+}
+/* animate character float */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
+}
+.character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: floaty 4s ease-in-out infinite;
+}
+
+/* VIOTUS hand-writing style title */
+.title {
+  font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
+  font-size: 3.2rem;
+  text-align: center;
+  color: #39121f;
+  letter-spacing: -1px;
+  margin: 10px 0 40px;
+  user-select: none;
+}
+
+/* Form group container */
+.form-group {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start; /* Đảm bảo các trường thẳng hàng trên cùng */
+  gap: 12px;
+}
+/* Tag number boxes like 01 02 etc */
+.tag-number {
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.1rem;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+  position: relative;
+  margin-top: 6px; /* Căn giữa với label nếu cần */
+}
+/* Different background colors for tags */
+.tag-brand {
+  background: #f5a9b8;
+  margin-right: 8px;
+  font-style: normal;
+}
+.tag-01 {
+  background: #efaa88;
+  margin-right: 12px;
+  position: relative;
+}
+.tag-02 {
+  background: #86c6cd;
+  margin-right: 12px;
+}
+.tag-03 {
+  background: #c1a1b8;
+  margin-right: 12px;
+}
+.tag-04 {
+  background: #f6b2a9;
+  margin-right: 12px;
+}
+.tag-05 {
+  background: #86b5b9;
+  margin-right: 12px;
+}
+.tag-06 {
+  background: #cc91a8;
+  margin-right: 12px;
 }
 
-.container {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  width: 400px;
-  text-align: center;
-}
-
-h1 {
-  text-align: center;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-}
-
-.info {
-  display: grid;
-  gap: 5px;
-  text-align: left;
-}
-
-.info p {
-  margin: 5px 0;
-}
-
-#copyButton {
-  margin-left: 93%;
-  padding-top: 20px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
+/* Input container with icon and input */
+.input-with-icon {
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  transition: transform 0.3s ease, color 0.3s ease;
-  right: 5px;
-  bottom: 5px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 1px 12px rgb(237 173 188 / 0.25);
+  padding: 6px 14px 6px 6px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease;
+  cursor: text;
+  min-height: 38px; /* Đảm bảo chiều cao đồng nhất */
 }
-#copyButton:hover i {
-  transform: scale(1.25); /* Phóng to biểu tượng */
+.input-with-icon:hover {
+  border-color: #e194a4;
+}
+input[type="text"],
+select {
+  flex-grow: 1;
+  font-size: 1.0rem;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 10px 16px;
+  background: transparent;
+  user-select: text;
+  color: #333;
+  font-weight: 600;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+select::-ms-expand {
+  display: none;
+}
+.input-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+.input-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgb(237 173 188 / 0.65));
 }
 
+/* Underline swirl decorative line under 2nd field */
+.decorative-line {
+  margin: -10px 0 22px;
+  height: 20px;
+  width: 90%;
+  border-bottom: 2px solid #d9aeb2;
+  border-radius: 50%/100%;
+  position: relative;
+  left: 40px;
+  user-select: none;
+}
+.decorative-line::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 4px;
+  height: 12px;
+  background: #d9aeb2;
+  border-radius: 2px;
+  transform: translateX(-50%) rotate(15deg);
+}
+
+/* Copy icon on bottom right corner */
+.copy-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 14px;
+  width: 48px;      /* Tăng kích thước nút */
+  height: 48px;     /* Tăng kích thước nút */
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 1px 1px rgb(237 173 188 / 0.6));
+  background: none;
+  border: none;
+}
+.copy-icon:hover {
+  transform: scale(1.1);
+}
+.copy-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Label text inside input placeholder style */
+input::placeholder,
+select option[disabled] {
+  color: #bbb3b5;
+  font-weight: 600;
+}
+
+/* Copy success notification */
 #copy-success {
   display: none;
-  color: green;
-  margin-left: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* Thêm định dạng cho hình ảnh */
-.image-container {
-  margin-bottom: 15px;
-}
-
-.restaurant-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  animation: shake 1s ease-in-out 2;
-}
-
-@keyframes shake {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(5deg); }
-  50% { transform: rotate(-5deg); }
-  75% { transform: rotate(5deg); }
-  100% { transform: rotate(0deg); }
-}
-
+/* Sakura falling effect */
 #sakura-container {
-  position: fixed; /* Sử dụng fixed để hoa không bị giới hạn bởi các container khác */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh; /* Đảm bảo chiều cao của container bao phủ toàn bộ trang */
-  z-index: 1000; /* Đảm bảo sakura nằm trên các phần tử khác */
-  pointer-events: none; /* Để không ảnh hưởng đến tương tác của trang web */
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
 }
 
 .sakura {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background-image: url('sakura.png');
-  background-size: contain;
+  width: 20px;
+  height: 20px;
+  background: #ffb3ba;
+  border-radius: 50% 0;
+  transform: rotate(-45deg);
+  animation: fall linear infinite;
   opacity: 0.8;
-  animation: fall-diagonal 8s linear infinite;
 }
 
-@keyframes fall-diagonal {
-  0% {
-      transform: translate(100vw, -50px); /* Bắt đầu từ trên cùng bên phải */
+.sakura::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #ffb3ba;
+  border-radius: 50% 0;
+  transform: rotate(45deg);
+  top: -7px;
+  left: 7px;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100vh) rotate(-45deg);
   }
-  100% {
-      transform: translate(-100vw, 100vh); /* Rơi chéo xuống dưới cùng bên trái */
+  to {
+    transform: translateY(100vh) rotate(-45deg);
+  }
+}
+
+/* Clickable info fields */
+.clickable-info {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  margin: 5px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.clickable-info:hover {
+  background-color: #f0f0f0;
+}
+
+/* Field label style */
+.field-label {
+  min-width: 130px; /* Tăng nếu label dài */
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b35c7a;
+  margin-bottom: 0;
+  margin-right: 0;
+  white-space: nowrap;
+  line-height: 38px; /* Căn giữa label với icon */
+}
+
+/* Bubble cloud style */
+.cloud-bubble {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 100%;
+  margin-left: 10px;
+  background: #fff;
+  color: #b35c7a;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(237,173,188,0.18);
+  padding: 14px 22px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  z-index: 10;
+  min-width: 170px;
+  max-width: 220px;
+  white-space: pre-line;
+  transition: opacity 0.2s;
+  border: 1.5px solid #f3c6d2;
+}
+.cloud-bubble::after {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 24px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: -6px 0 0 0 #f3c6d2;
+  z-index: 1;
+}
+
+/* Hiện bubble khi hover */
+.character:hover .cloud-bubble {
+  display: block;
+  opacity: 1;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 450px) {
+  .container {
+    padding: 40px 20px 60px;
+  }
+  .character {
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
+    display: block; /* Đảm bảo không bị ẩn */
+  }
+  .title {
+    font-size: 2.0rem;
+    margin-bottom: 20px;
   }
 }
