@@ -1,21 +1,41 @@
-// script.js
+// Cấu hình API Endpoint lấy dữ liệu từ database VLT_Ticket
+// Tự động chuyển đổi giữa localhost (khi code/test) và production domain
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'https://localhost:44337/api/restaurant' // Thay đổi port 7147 thành port local của VLT_Ticket nếu chạy khác port
+    : 'https://vlotusticket.io.vn/api/restaurant';
+
 let data = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('restaurants.csv') // Đường dẫn tới file CSV trong dự án
-        .then(response => response.text())
-        .then(csv => {
-            Papa.parse(csv, {
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    data = results.data;
-                    populateBrands();
-                },
-                error: function(error) {
-                    console.error("Error reading CSV file:", error);
-                }
-            });
+    fetch(API_URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Lỗi phản hồi từ API Server');
+            }
+            return response.json();
+        })
+        .then(jsonData => {
+            data = jsonData;
+            populateBrands();
+        })
+        .catch(error => {
+            console.warn("Không thể tải dữ liệu từ SQL DB, chuyển sang dùng file CSV dự phòng:", error);
+            // Dự phòng (Fallback): nếu API lỗi, vẫn load file CSV local để website không bị trống dữ liệu
+            fetch('restaurants.csv')
+                .then(response => response.text())
+                .then(csv => {
+                    Papa.parse(csv, {
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: function(results) {
+                            data = results.data;
+                            populateBrands();
+                        },
+                        error: function(err) {
+                            console.error("Lỗi đọc file CSV dự phòng:", err);
+                        }
+                    });
+                });
         });
 });
 
